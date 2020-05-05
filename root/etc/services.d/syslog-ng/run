@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+exec s6-setuidgid root  /usr/sbin/syslog-ng -F -f /config/conf/syslog-ng.conf

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+echo "**************************************************"
+echo "*                                                *"
+echo "* Setup for docker-syslog-ng                     *"
+echo "*                                                *"
+echo "**************************************************"
+
+# create folders
+mkdir -p \
+  /config/logs \
+  /config/conf
+
+# If the basic config doesn't exist, let's add it
+if [ ! -f /config/conf/syslog-ng.conf ]; then
+  echo "* Installing default syslog-ng config since none detected..."
+  cp -a /defaults/syslog-ng.conf /config/conf
+fi
+
+
+# Change perms
