@@ -19,3 +19,5 @@ fi
 
 
 # Change perms
+
+chown -R tkf:tkf /config
