@@ -9,7 +9,8 @@ echo "**************************************************"
 # create folders
 mkdir -p \
   /config/logs \
-  /config/conf
+  /config/conf \
+  /var/lib/syslog-ng
 
 # If the basic config doesn't exist, let's add it
 if [ ! -f /config/conf/syslog-ng.conf ]; then
@@ -17,7 +18,8 @@ if [ ! -f /config/conf/syslog-ng.conf ]; then
   cp -a /defaults/syslog-ng.conf /config/conf
 fi
 
-
 # Change perms
 
-chown -R tkf:tkf /config
+chown -R tkf:tkf \
+	/config \
+	/var/lib/syslog-ng
