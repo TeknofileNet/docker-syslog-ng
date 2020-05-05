@@ -13,7 +13,7 @@ ENV BIND_USER=bind \
 
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes
 RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
   syslog-summary \
   syslog-ng 
 
