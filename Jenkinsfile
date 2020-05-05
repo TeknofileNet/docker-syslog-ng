@@ -4,7 +4,7 @@ pipeline {
   }
 
   environment {
-    CONTAINER_NAME = 'tkf-docker-syslog'
+    CONTAINER_NAME = 'docker-syslog-ng'
     TKF_USER = 'wtfo'
     UBUNTU_VERSION = '18.04'
     DOCKER_CLI_EXPERIMENTAL='enabled'
@@ -13,8 +13,10 @@ pipeline {
   }
 
   stages {
-    stage('Setup env') {
+    stage('Setup environment and Start') {
       steps {
+        slackSend (color: '#ffff00', message: "STARTED: Job '${env.JOB_NAME}' [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+
         script {
           env.EXIT_STATUS = ''
           env.CURR_DATE = sh(
@@ -56,6 +58,16 @@ pipeline {
       steps {
         sh 'curl -s ${SCAN_SCRIPT} | bash -s -- -t 1800 -r -p ${LOCAL_DOCKER_PROXY}${TKF_USER}/${CONTAINER_NAME}:${GITHASH_LONG}'
       }
+    }
+  }
+  post {
+    success {
+      slackSend(color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+)
+    }
+
+    failure {
+      slackSend(color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
     }
   }
 }
