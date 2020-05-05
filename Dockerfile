@@ -1,7 +1,11 @@
 FROM wtfo/docker-base-ubuntu-s6
 LABEL maintainer="teknofile <teknofile@teknofile.org>"
-RUN apt-get update
 
+ARG BUILD_DATE
+
+LABEL build_date="Build Date: ${BUILD_DATE}"
+
+RUN apt-get update
 
 ENV BIND_USER=bind \
     DNSUTILS_VERSION=9.11.3+dfsg-1ubuntu1.11 \
