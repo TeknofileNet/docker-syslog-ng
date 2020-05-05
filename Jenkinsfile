@@ -4,7 +4,7 @@ pipeline {
   }
 
   environment {
-    CONTAINER_NAME = 'tkf-docker-bind'
+    CONTAINER_NAME = 'tkf-docker-syslog'
     TKF_USER = 'wtfo'
     UBUNTU_VERSION = '18.04'
     DOCKER_CLI_EXPERIMENTAL='enabled'
