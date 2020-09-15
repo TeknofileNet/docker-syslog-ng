@@ -5,7 +5,7 @@ pipeline {
 
   environment {
     CONTAINER_NAME = 'docker-syslog-ng'
-    TKF_USER = 'wtfo'
+    TKF_USER = 'teknofile'
     UBUNTU_VERSION = '18.04'
     DOCKER_CLI_EXPERIMENTAL='enabled'
     LOCAL_DOCKER_PROXY="docker.copperdale.teknofile.net/"
